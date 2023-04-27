@@ -1,16 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Select from 'react-select';
+import { getForecastWeatherData, getWeatherData } from '../../store/slices/fetchWeatherSlice';
 import { GlobalSvgSelector } from '../assets/icons/GlobalSvgSelector';
 import style from './Header.module.scss';
 
 export const Header = () => {
+    const dispatch = useDispatch();
+    const [value, setValue] = useState('Санкт-Петербург');
+
+
+    useEffect(() => {
+        dispatch(getWeatherData(value))
+    }, [value])
+
+    useEffect(() => {
+        dispatch(getForecastWeatherData(value));
+    }, [value])
+
+
     const options = [
         { value: 'city-1', label: 'Санкт-Петербург' },
-        { value: 'city-2', label: 'Москва' },
-        { value: 'city-3', label: 'Новгород' },
+        { value: 'city-2', label: 'Лондон' },
+        { value: 'city-3', label: 'Париж' },
+        { value: 'city-4', label: 'Москва' },
+        { value: 'city-5', label: 'Новгород' },
+        { value: 'city-6', label: 'Дербент' },
+        { value: 'city-7', label: 'Ставрополь' },
+        { value: 'city-8', label: 'Пятигорск' },
     ]
 
-    const [value, setValue] = useState('');
 
     const colorStyle = {
         control: (styles) => ( {
@@ -28,8 +47,8 @@ export const Header = () => {
         })
     }
 
-    const handleChangeValue = (e) => {
-        setValue(e.target.value);
+    const handleChangeValue = (selectOption) => {
+        setValue(selectOption.label);
     }
 
     return (
@@ -49,8 +68,8 @@ export const Header = () => {
                 </div>
                 <Select 
                     defaultValue={options[0]}
-                    inputValue={value}
                     options={options}
+                    onChange={handleChangeValue}
                     styles={colorStyle}
                 />
             </div>
