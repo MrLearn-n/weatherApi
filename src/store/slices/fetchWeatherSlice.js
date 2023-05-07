@@ -3,12 +3,13 @@ import axios from "axios";
 
 const initialState = {
     list: {},
+    dayList: {},
     week: {},
     isLoading: false,
 };
 
 export const getWeatherData = createAsyncThunk('weather/getWeatherData', async(city) => {
-    const { data } =  await axios.get(`http://api.weatherapi.com/v1/current.json?key=3b7f6cd264cb4b428f4185012232504&q=${city}&aqi=yes`,);
+    const { data } =  await axios.get(`http://api.weatherapi.com/v1/current.json?key=3b7f6cd264cb4b428f4185012232504&q=${city}&aqi=yes`);
     return data;
 });
 
@@ -17,10 +18,19 @@ export const getForecastWeatherData = createAsyncThunk('weather/getForecastWeath
     return data;
 }); 
 
+// export const getThisDayWeatherData = createAsyncThunk('weather/getThisDayWeatherData', async(date) => {
+//     const { data } = await axios.get(`http://api.weatherapi.com/v1/history.json?key=3b7f6cd264cb4b428f4185012232504&q=London&dt=${date}`);
+//     return data;
+// })
+
 const fetchWeatherSlice = createSlice({
     name: 'weather',
     initialState,
-    reducers: {},
+    reducers: {
+        getDayData: (state, action) => {
+            state.dayList = state.week?.forecast?.forecastday.map(item => item).filter(el => el.date == action.payload)
+        }
+    },
     extraReducers: {
         [getWeatherData.pending]: (state) => {
             state.list = {};
@@ -40,8 +50,9 @@ const fetchWeatherSlice = createSlice({
         [getForecastWeatherData.fulfilled]: (state, action) => {
             state.week = action.payload;
             state.isLoading = false;
-        }
+        },
     },
 });
 
+export const { getDayData } = fetchWeatherSlice.actions;
 export default fetchWeatherSlice.reducer;
