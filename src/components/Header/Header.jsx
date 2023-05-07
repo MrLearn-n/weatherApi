@@ -7,7 +7,7 @@ import style from './Header.module.scss';
 
 export const Header = () => {
     const dispatch = useDispatch();
-    const [value, setValue] = useState('Санкт-Петербург');
+    const [value, setValue] = useState('Saint Petersburg');
 
 
     useEffect(() => {
@@ -20,14 +20,14 @@ export const Header = () => {
 
 
     const options = [
-        { value: 'city-1', label: 'Санкт-Петербург' },
-        { value: 'city-2', label: 'Лондон' },
-        { value: 'city-3', label: 'Париж' },
-        { value: 'city-4', label: 'Москва' },
-        { value: 'city-5', label: 'Новгород' },
-        { value: 'city-6', label: 'Дербент' },
-        { value: 'city-7', label: 'Ставрополь' },
-        { value: 'city-8', label: 'Пятигорск' },
+        { value: 'Saint Petersburg', label: 'Санкт-Петербург' },
+        { value: 'Лондон', label: 'Лондон' },
+        { value: 'Париж', label: 'Париж' },
+        { value: 'Москва', label: 'Москва' },
+        { value: 'Новгород', label: 'Новгород' },
+        { value: 'Дербент', label: 'Дербент' },
+        { value: 'Ставрополь', label: 'Ставрополь' },
+        { value: 'Пятигорск', label: 'Пятигорск' },
     ]
 
 
@@ -48,7 +48,7 @@ export const Header = () => {
     }
 
     const handleChangeValue = (selectOption) => {
-        setValue(selectOption.label);
+        setValue(selectOption.value);
     }
 
     return (
