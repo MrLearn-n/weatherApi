@@ -5,7 +5,7 @@ import { ThisDayItem } from './ThisDayItem';
 
 export const ThisDayInfo = ({data}) => {
     const { location, current } = data;
-
+    
     const item = [
         {
             icon_id: 'temp',

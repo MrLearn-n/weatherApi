@@ -17,7 +17,6 @@ export const Home = () => {
         dispatch(getForecastWeatherData());
     }, [dispatch])
 
-
     return (
         <div className={style.home}>
             <div className={style.wrapper}>

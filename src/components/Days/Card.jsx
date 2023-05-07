@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { GlobalSvgSelector } from '../assets/icons/GlobalSvgSelector';
 import style from './Days.module.scss';
 
@@ -8,28 +8,6 @@ export const Card = ({ day }) => {
     let monthName = date.toLocaleString('ru-RU', {month: 'long'});
     let dayNumber = date.getDate();
     
-
-    function getDayName(i) {
-        // switch (i) {
-        //     case 3:
-        //         return 'Сегодня';
-        //     case 4:
-        //         return 'Завтра';
-        //     case 5:
-        //         return 'Пятница';
-        //     case 6:
-        //         return 'Суббота';
-        //     case 0:
-        //         return 'Воскресенье';
-        //     case 1:
-        //         return 'Понедельник';
-        //     case 2:
-        //         return 'Вторник';
-        //     default:
-        //         return;
-        // }
-    }
-
     return (
         <div className={style.card}>
             <div className={style.day}>{dayName}</div>
