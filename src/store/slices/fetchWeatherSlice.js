@@ -9,12 +9,12 @@ const initialState = {
 };
 
 export const getWeatherData = createAsyncThunk('weather/getWeatherData', async(city) => {
-    const { data } =  await axios.get(`http://api.weatherapi.com/v1/current.json?key=3b7f6cd264cb4b428f4185012232504&q=${city}&aqi=yes`);
+    const { data } =  await axios.get(`http://api.weatherapi.com/v1/current.json?key=c36fd7300d2345e2ab563435230306&q=${city}&aqi=yes`);
     return data;
 });
 
 export const getForecastWeatherData = createAsyncThunk('weather/getForecastWeatherData', async(city) => {
-    const {data} = await axios.get(`http://api.weatherapi.com/v1/forecast.json?key=3b7f6cd264cb4b428f4185012232504&q=${city}&days=7&aqi=no&alerts=no`);
+    const {data} = await axios.get(`http://api.weatherapi.com/v1/forecast.json?key=c36fd7300d2345e2ab563435230306&q=${city}&days=7&aqi=no&alerts=no`);
     return data;
 }); 
 
