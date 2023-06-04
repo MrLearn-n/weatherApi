@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
+import { changeTheme } from '../../store/slices/changeThemeSlice';
 import { getForecastWeatherData, getWeatherData } from '../../store/slices/fetchWeatherSlice';
 import { GlobalSvgSelector } from '../assets/icons/GlobalSvgSelector';
 import style from './Header.module.scss';
 
 export const Header = () => {
     const dispatch = useDispatch();
-    const [value, setValue] = useState('Saint Petersburg');
+    const currentCityName = localStorage.getItem('city');
+    const storageTheme = localStorage.getItem('theme');
 
+    const [value, setValue] = useState(currentCityName);
+    const currentTheme = useSelector(state => state.theme);
+    const { theme  } = currentTheme;
+
+    useEffect(() => {
+        localStorage.setItem('city', value);
+    }, [value])
 
     useEffect(() => {
         dispatch(getWeatherData(value))
@@ -34,7 +43,7 @@ export const Header = () => {
     const colorStyle = {
         control: (styles) => ( {
             ...styles,
-            backgroundColor: '#DAE9FF',
+            backgroundColor: storageTheme === 'dark' ? '#4F4F4F' : '#DAE9FF',
             width: '194px',
             height: '37px',
             border: 'none',
@@ -43,12 +52,18 @@ export const Header = () => {
         }),
         singleValue: (styles) => ({
             ...styles,
-            color: '#000',
+            color:  storageTheme === 'dark' ? '#fff' : '#000',
         })
     }
 
     const handleChangeValue = (selectOption) => {
         setValue(selectOption.value);
+    }
+
+    const handleChangeTheme = () => {
+        const nextTheme = theme === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('theme', nextTheme);
+        dispatch(changeTheme(nextTheme))
     }
 
     return (
@@ -57,17 +72,19 @@ export const Header = () => {
                 <div className={style.logo}>
                     <GlobalSvgSelector id='header-logo' />
                 </div>
-                <div className={style.title}>React Weather</div>
+                <div className={style.title}>Weather Service</div>
             </div>
             <div className={style.wrapper}>
                 <div 
                     className={style.change_theme}
                     onClick={() => {}}
                 >
-                    <GlobalSvgSelector id='change-theme' />
+                    <div onClick={handleChangeTheme}>
+                        <GlobalSvgSelector id='change-theme' />
+                    </div>
                 </div>
                 <Select 
-                    defaultValue={options[0]}
+                    
                     options={options}
                     onChange={handleChangeValue}
                     styles={colorStyle}

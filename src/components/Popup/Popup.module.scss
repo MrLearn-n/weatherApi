@@ -11,7 +11,7 @@
     padding: 40px;
     max-width: 750px;
     transform: translateY(50%);
-    background: $light-background;
+    background-color: var(#{--components-background-default});
     box-shadow: $box-shadow;
     border-radius: $border-radius;
 }
@@ -48,7 +48,7 @@
     .day__name {
         font-size: 30px;
         line-height: 30px;
-        color: #000;
+        color: var(#{--text-color-default});
         margin-bottom: 12px;
     }
 
@@ -63,6 +63,6 @@
     .day__time,
     .day__city {
         font-size: 15px;
-        color: $base-color;
+        color: var(#{--text-color-default});
     }
 }

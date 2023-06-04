@@ -83,12 +83,11 @@ export const Days = ({data}) => {
 
     return (
         <>
-            <Tabs />
             {dataWeek ? 
                 (<div className={style.days} onClick={showPopup}>
                     {dataWeek.map(day => (
-                        <div className='' onClick={() => {setState(day.date)}}>
-                            <Card day={day} key={day.date} />
+                        <div className='' onClick={() => {setState(day.date)}} key={day.date}>
+                            <Card day={day}/>
                         </div>
                     ))}         
                 </div>)
