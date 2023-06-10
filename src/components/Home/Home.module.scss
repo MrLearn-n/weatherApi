@@ -3,3 +3,14 @@
     justify-content: space-between;
     margin-bottom: 50px;
 }
+
+@media (max-width: 1170px) {
+    .wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+  
+    .wrapper > div:first-child {
+        margin-bottom: 40px;
+    }
+  }

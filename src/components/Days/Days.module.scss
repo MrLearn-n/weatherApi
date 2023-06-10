@@ -1,8 +1,11 @@
 @import './../../variables.scss';
 
 .days {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    justify-content: flex-start;
+    overflow-x: scroll;  
+    column-gap: 15px;
     flex-wrap: wrap;
     padding: 20px;
     width: 100%;

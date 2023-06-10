@@ -37,3 +37,10 @@
         color: $base-color;
     }
 }
+
+@media (max-width: 1170px) {
+    .this__day {
+        max-width: 750px;
+        padding-bottom: 35px;
+    }
+}
