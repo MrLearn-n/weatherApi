@@ -33,3 +33,9 @@
     color: $primary-color;
     text-transform: uppercase;
 }
+
+@media (max-width: 530px) {
+    .header {
+        flex-direction: column;
+    }
+}
