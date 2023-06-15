@@ -3,8 +3,7 @@
 .days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    justify-content: flex-start;
-    overflow-x: scroll;  
+    justify-content: flex-start; 
     column-gap: 15px;
     flex-wrap: wrap;
     padding: 20px;
@@ -102,4 +101,10 @@
 
 .tabs__wrapper {
     display: flex;
+}
+
+@media (max-width: 1170px) {
+    .days {
+        overflow-x: scroll; 
+    }
 }
