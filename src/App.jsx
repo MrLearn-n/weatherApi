@@ -7,9 +7,7 @@ import { Popup } from "./components/Popup/Popup";
 
 function App() {
     const { modal } = useSelector((state) => state);
-    const { list, week, dayList, isLoading } = useSelector(
-        ({ weather }) => weather
-    );
+
 
     const storageTheme = localStorage.getItem('theme');
     const root = document.querySelector(':root');
@@ -28,11 +26,14 @@ function App() {
                 `var(--${item}-${storageTheme})`
             );
         });
-    }, [storageTheme]);
+    }, [components, storageTheme, root.style]);
+
+    // useMemo
+
 
     return (
         <div className="global-container">
-            {modal.modal && <Popup data={dayList} />}
+            {modal.modal && <Popup />}
             <div className="container">
                 <Header />
                 <Routes>
