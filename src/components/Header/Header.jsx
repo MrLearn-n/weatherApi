@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Select from 'react-select';
+import CreatableSelect from 'react-select/creatable';
 import { changeTheme } from '../../store/slices/changeThemeSlice';
 import { getForecastWeatherData, getWeatherData } from '../../store/slices/fetchWeatherSlice';
 import { GlobalSvgSelector } from '../assets/icons/GlobalSvgSelector';
@@ -21,11 +21,11 @@ export const Header = () => {
 
     useEffect(() => {
         dispatch(getWeatherData(value))
-    }, [value])
+    }, [dispatch, value])
 
     useEffect(() => {
         dispatch(getForecastWeatherData(value));
-    }, [value])
+    }, [dispatch, value])
 
 
     const options = [
@@ -51,6 +51,10 @@ export const Header = () => {
             zIndex: 100,
         }),
         singleValue: (styles) => ({
+            ...styles,
+            color:  storageTheme === 'dark' ? '#fff' : '#000',
+        }),
+        input: (styles) => ({
             ...styles,
             color:  storageTheme === 'dark' ? '#fff' : '#000',
         })
@@ -83,11 +87,10 @@ export const Header = () => {
                         <GlobalSvgSelector id='change-theme' />
                     </div>
                 </div>
-                <Select 
-                    
+                <CreatableSelect 
+                    styles={colorStyle}
                     options={options}
                     onChange={handleChangeValue}
-                    styles={colorStyle}
                 />
             </div>
         </header>
