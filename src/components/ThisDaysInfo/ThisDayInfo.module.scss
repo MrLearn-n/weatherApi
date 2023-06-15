@@ -61,3 +61,17 @@
         display: none;
     }
 }
+
+@media (max-width: 420px) {
+    .item {
+        flex-wrap: wrap;
+    }
+    
+    .indicator {
+        margin-bottom: 10px;
+    }
+
+    .indicator__name {
+        max-width: 100%;
+    }
+}
